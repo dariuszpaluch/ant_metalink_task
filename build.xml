@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="ant-tasks">
+    <property environment="env"/>
+    <property file="./default.properties"/>
+
+    <path id="ant-tasks.classpath">
+        <pathelement location="${build.dir}"/>
+        <pathelement location="lib/ant.jar"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="init" depends="clean">
+        <mkdir dir="${build.dir}"/>
+        <copy includeemptydirs="false" todir="${build.dir}">
+            <fileset dir="src/java">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="build">
+            <fileset dir="src/test">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target depends="init" name="build">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="${build.dir}" includeantruntime="false" source="${source}"
+               target="${target}">
+            <src path="src/java"/>
+            <src path="src/test"/>
+            <classpath refid="ant-tasks.classpath"/>
+        </javac>
+    </target>
+
+    <target name="jar" depends="build">
+        <jar compress="true" jarfile="${jars.dir}/ant-tasks.jar" update="false">
+            <fileset dir="${build.dir}"/>
+        </jar>
+    </target>
+
+    <taskdef resource="com/dariuszpaluch/ant/tasks/tasks.properties">
+        <classpath path="${jars.dir}/ant-tasks.jar"/>
+    </taskdef>
+
+    <target name="metalink" depends="jar">
+        <metalinktask>
+        </metalinktask>
+    </target>
+
+</project>
