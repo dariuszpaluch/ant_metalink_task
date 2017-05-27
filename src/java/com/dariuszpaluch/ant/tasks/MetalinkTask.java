@@ -40,7 +40,15 @@ public class MetalinkTask extends Task {
 		this.file = file;
 	}
 
+	public void checkUrl() {
+		if(this.url == null) {
+			this.setUrl(getProject().getProperty("server.files.url"));
+		}
+		System.out.println("URL: ", this.url);
+	}
+
 	public void execute() throws BuildException {
+		this.checkUrl();
 		System.out.println("DARIUSZ PALUCH122");
 	}
 }
