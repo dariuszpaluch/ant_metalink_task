@@ -6,13 +6,14 @@ import org.apache.tools.ant.Task;
 import org.apache.tools.ant.types.FileSet;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MetalinkTask extends Task {
 	private String url;
 	private FileSet fileSet;
 	private String file;
-	private List<File> files;
+	private List<File> files = new ArrayList<>();
 
 	public void addFileSet(FileSet fileset){
 		this.fileSet = fileset;
@@ -54,12 +55,19 @@ public class MetalinkTask extends Task {
 		System.out.println("URL: "+ this.url);
 	}
 
+	private void addFile(String filePath) {
+		File file = new File(filePath);
+		this.files.add(file);
+	}
+
 	private void readAllFiles() {
 		System.out.println("Read all files");
 		DirectoryScanner ds = this.fileSet.getDirectoryScanner(getProject());
 		String[] includedFiles = ds.getIncludedFiles();
-		for(int i=0; i<includedFiles.length; i++) {
-			String filename = includedFiles[i].replace('\\','/');
+		for(String item : includedFiles) {
+			this.addFile(item);
+			String filename = item.replace('\\','/');
+
 			System.out.println(filename);
 		}
 	}
