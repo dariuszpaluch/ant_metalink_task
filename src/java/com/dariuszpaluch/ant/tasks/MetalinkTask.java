@@ -7,6 +7,7 @@ import org.apache.tools.ant.types.FileSet;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import javax.xml.bind.DatatypeConverter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -17,7 +18,15 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.IOException;
+import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MetalinkTask extends Task {
@@ -94,17 +103,80 @@ public class MetalinkTask extends Task {
 		// StreamResult result = new StreamResult(System.out);
 
 		transformer.transform(source, result);
-
 		System.out.println("File saved!");
 	}
-	private void createMetalinkDoc() throws ParserConfigurationException, TransformerException {
+
+	private String generateMd5HashFile(File file) throws NoSuchAlgorithmException, IOException {
+		MessageDigest md = MessageDigest.getInstance("MD5");
+		md.update(Files.readAllBytes(Paths.get(file.getPath())));
+		return String.format("%032x", new BigInteger(1, md.digest()));
+	}
+
+	private String createFileUrl(File file) {
+		return this.url + file.getPath().replace('\\','/');
+	}
+
+	private Element createFileVerification(File file, Document doc) throws IOException, NoSuchAlgorithmException {
+		Element verificationElement = doc.createElement("verification");
+
+		Element hashElement = doc.createElement("hash");
+		hashElement.setAttribute("type", "md5");
+		hashElement.appendChild(doc.createTextNode(this.generateMd5HashFile(file)));
+		verificationElement.appendChild(hashElement);
+
+		return verificationElement;
+	}
+
+	private Element createResourcesElement(File file, Document doc) {
+		Element resourcesElement = doc.createElement("resources");
+
+		Element urlElement = doc.createElement("url");
+		urlElement.appendChild(doc.createTextNode(createFileUrl(file)));
+		resourcesElement.appendChild(urlElement);
+
+		return resourcesElement;
+	}
+	private Element createFileElement(File file, Document doc) throws IOException, NoSuchAlgorithmException {
+		Element fileElement = doc.createElement("file");
+		fileElement.setAttribute("name", file.getName());
+
+		Element sizeElement = doc.createElement("size");
+		sizeElement.appendChild(doc.createTextNode(Long.toString(file.length())));
+		fileElement.appendChild(sizeElement);
+
+		fileElement.appendChild(this.createFileVerification(file, doc));
+
+
+		fileElement.appendChild(this.createResourcesElement(file, doc));
+
+		return fileElement;
+	}
+
+	private String getCreatedDate() {
+		Calendar calendar = Calendar.getInstance();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		return dateFormat.format(calendar.getTime());
+	}
+	private void createMetalinkDoc() throws ParserConfigurationException, TransformerException, IOException, NoSuchAlgorithmException {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 // root elements
 		Document doc = docBuilder.newDocument();
-		Element rootElement = doc.createElement("company");
+		Element rootElement = doc.createElement("metalink");
+		rootElement.setAttribute("version", "3.0");
+		rootElement.setAttribute("xmlns", "http://metalinker.org");
 		doc.appendChild(rootElement);
 
+		Element publishedElement = doc.createElement("published");
+		publishedElement.appendChild(doc.createTextNode(this.getCreatedDate()));
+		rootElement.appendChild(publishedElement);
+
+		Element filesElement = doc.createElement("files");
+		rootElement.appendChild(filesElement);
+
+		for(File file: this.files) {
+			filesElement.appendChild(this.createFileElement(file, doc));
+		}
 
 		this.writeDocumentToXmlFile(doc);
 	}
@@ -117,6 +189,10 @@ public class MetalinkTask extends Task {
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (TransformerException e) {
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

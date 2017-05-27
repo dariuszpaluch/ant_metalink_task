@@ -1,1 +1,186 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><company/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<metalink xmlns="http://metalinker.org" version="3.0">
+    <published>27.05.2017</published>
+    <files>
+        <file name="compiler.xml">
+            <size>686</size>
+            <verification>
+                <hash type="md5">b1e2d88063e7fa8bdd1b2bb48e5f4f40</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/.idea/compiler.xml</url>
+            </resources>
+        </file>
+        <file name="profiles_settings.xml">
+            <size>76</size>
+            <verification>
+                <hash type="md5">60e83b7d2a37fa2a48c085f5ed5ea48c</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/.idea/copyright/profiles_settings.xml</url>
+            </resources>
+        </file>
+        <file name="ant.xml">
+            <size>204</size>
+            <verification>
+                <hash type="md5">55ab085bc269e94532da833c4783ace4</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/.idea/libraries/ant.xml</url>
+            </resources>
+        </file>
+        <file name="misc.xml">
+            <size>214</size>
+            <verification>
+                <hash type="md5">94d2faef6c3670a1f1e0008ab53369a4</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/.idea/misc.xml</url>
+            </resources>
+        </file>
+        <file name="modules.xml">
+            <size>266</size>
+            <verification>
+                <hash type="md5">1634f1b25d470054337685b7c16d37a3</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/.idea/modules.xml</url>
+            </resources>
+        </file>
+        <file name="project.iml">
+            <size>484</size>
+            <verification>
+                <hash type="md5">f3b599e23f34c8648eeaedeff9858fa7</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/.idea/project.iml</url>
+            </resources>
+        </file>
+        <file name="uiDesigner.xml">
+            <size>8792</size>
+            <verification>
+                <hash type="md5">a9d2a34fba34d48e46ce58d67808142a</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/.idea/uiDesigner.xml</url>
+            </resources>
+        </file>
+        <file name="vcs.xml">
+            <size>167</size>
+            <verification>
+                <hash type="md5">8c9c0403ab0f6457841c605f08a3340c</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/.idea/vcs.xml</url>
+            </resources>
+        </file>
+        <file name="workspace.xml">
+            <size>61242</size>
+            <verification>
+                <hash type="md5">24a175aa65ced9455523cdbde573d0cf</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/.idea/workspace.xml</url>
+            </resources>
+        </file>
+        <file name="README.md">
+            <size>19</size>
+            <verification>
+                <hash type="md5">ac0b45236d571f3633474648bd37ebb6</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/README.md</url>
+            </resources>
+        </file>
+        <file name="build.xml">
+            <size>1957</size>
+            <verification>
+                <hash type="md5">f768ae439208ce24941f3fb170b941ee</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/build.xml</url>
+            </resources>
+        </file>
+        <file name="tasks.properties">
+            <size>39</size>
+            <verification>
+                <hash type="md5">9e2ed3fb39c08af73f2dcc8a270e60eb</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/build/com/dariuszpaluch/ant/tasks/tasks.properties</url>
+            </resources>
+        </file>
+        <file name="MetalinkTask.class">
+            <size>8432</size>
+            <verification>
+                <hash type="md5">f6cdf513b8130ff5281d2ef0402ad478</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/build/org/ant/tasks/MetalinkTask.class</url>
+            </resources>
+        </file>
+        <file name="default.properties">
+            <size>125</size>
+            <verification>
+                <hash type="md5">37e8f2d76d23463d1ddf90eab5d58fe9</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/default.properties</url>
+            </resources>
+        </file>
+        <file name="ant-tasks.jar">
+            <size>1779</size>
+            <verification>
+                <hash type="md5">6400fbffc0c1b02993a745019c6da767</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/jars/ant-tasks.jar</url>
+            </resources>
+        </file>
+        <file name="ant-tasks.jar">
+            <size>5176</size>
+            <verification>
+                <hash type="md5">9415d419aaf0693ffcb7a5c6f26d961d</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/lib/ant-tasks.jar</url>
+            </resources>
+        </file>
+        <file name="ant.jar">
+            <size>1286456</size>
+            <verification>
+                <hash type="md5">b7eeda8f70d6ce287fe1b30e2ccc8fdb</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/lib/ant.jar</url>
+            </resources>
+        </file>
+        <file name="MetalinkTask.java">
+            <size>6261</size>
+            <verification>
+                <hash type="md5">6733fc771ee1823be9e4d4ed5b8f2233</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/src/java/com/dariuszpaluch/ant/tasks/MetalinkTask.java</url>
+            </resources>
+        </file>
+        <file name="tasks.properties">
+            <size>39</size>
+            <verification>
+                <hash type="md5">9e2ed3fb39c08af73f2dcc8a270e60eb</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/src/java/com/dariuszpaluch/ant/tasks/tasks.properties</url>
+            </resources>
+        </file>
+        <file name="zad-zwiwo.xml">
+            <size>6059</size>
+            <verification>
+                <hash type="md5">0a72c4d3bfc92c79c6549e0184840f64</hash>
+            </verification>
+            <resources>
+                <url>http://zad-zwiwo.com/download/zad-zwiwo.xml</url>
+            </resources>
+        </file>
+    </files>
+</metalink>
